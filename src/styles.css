@@ -37,6 +37,20 @@ body {
   display: inline-block;
 }
 
+.field:not(:last-child) {
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    background-position: -300px 0;
+  }
+
+  .field:not(:last-child) {
+    margin-right: 2px;
+  }
+}
+
 .value,
 .label {
   display: inline-block;

@@ -58,7 +58,6 @@ class CountdownTimer {
 const timer = new CountdownTimer({
   selector: '#timer-1',
   targetDate: new Date('Jan 01, 2021'),
-  // targetDate: new Date(2020, 11, 20, 23, 27),
 });
 
 timer.start();
@@ -71,5 +70,5 @@ function updateTimerView({ days, hours, mins, secs }) {
 }
 
 function finishTimer() {
-  refs.text.innerHTML = `Congratulations! Happy New Year!`;
+  refs.text.textContent = 'Congratulations! Happy New Year!';
 }

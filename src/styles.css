@@ -33,6 +33,14 @@ body {
   text-align: center;
 }
 
+.bgc {
+  display: inline-block;
+
+  border: 2px solid #524237;
+  border-radius: 8px;
+  background-color: #dabba6;
+}
+
 .field {
   display: inline-block;
 }
@@ -41,14 +49,8 @@ body {
   margin-right: 10px;
 }
 
-@media screen and (max-width: 768px) {
-  body {
-    background-position: -300px 0;
-  }
-
-  .field:not(:last-child) {
-    margin-right: 2px;
-  }
+.value {
+  border: 1px solid #524237;
 }
 
 .value,
@@ -64,6 +66,7 @@ body {
 
   border-radius: 8px;
 }
+
 .label {
   display: block;
   background-color: transparent;
@@ -75,6 +78,36 @@ body {
 }
 
 .some-text {
+  margin: 0 10px;
   font-size: 40px;
   font-weight: 600;
+}
+
+@media screen and (max-width: 768px) {
+  .timer {
+    padding: 150px 0;
+  }
+
+  .field:not(:last-child) {
+    margin-right: 2px;
+  }
+
+  .some-text {
+    margin: 0 2px;
+    font-size: 30px;
+    font-weight: 600;
+  }
+
+  .value {
+    font-size: 30px;
+    line-height: 70px;
+    width: 70px;
+
+    border-radius: 8px;
+  }
+  .label {
+    line-height: 50px;
+    width: 60px;
+    font-size: 13px;
+  }
 }

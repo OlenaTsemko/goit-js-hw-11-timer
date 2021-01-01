@@ -9,31 +9,38 @@ const refs = {
 class CountdownTimer {
   constructor({ selector, targetDate }) {
     this.intervalId = null;
-    this.newTime = null;
+    // this.newTime = null;
     this.timerView = document.querySelector(selector);
     this.wishDate = targetDate.getTime();
+
+    this.start();
+  }
+
+  render() {
+    const currentTime = Date.now();
+    const deltaTime = this.wishDate - currentTime;
+
+    if (deltaTime <= 0) {
+      this.stop();
+      return;
+    }
+
+    this.getTimeParts(deltaTime);
   }
 
   start() {
+    this.render();
+
     this.intervalId = setInterval(() => {
-      const currentTime = Date.now();
-
-      const deltaTime = this.wishDate - currentTime;
-
-      this.getTimeParts(deltaTime);
-      this.stop();
+      this.render();
     }, 1000);
   }
 
   stop() {
-    const { days, hours, mins, secs } = this.newTime;
+    clearInterval(this.intervalId);
+    this.getTimeParts(0);
 
-    if (+days <= 0 && +hours <= 0 && +mins <= 0 && +secs <= 0) {
-      clearInterval(this.intervalId);
-      this.getTimeParts(0);
-
-      finishTimer();
-    }
+    finishTimer();
   }
 
   getTimeParts(time) {
@@ -44,9 +51,9 @@ class CountdownTimer {
     const mins = this.pad(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
     const secs = this.pad(Math.floor((time % (1000 * 60)) / 1000));
 
-    this.newTime = { days, hours, mins, secs };
+    const newTime = { days, hours, mins, secs };
 
-    updateTimerView(this.newTime);
+    updateTimerView(newTime);
     // updateTimerView({ days, hours, mins, secs });
   }
 
@@ -57,10 +64,8 @@ class CountdownTimer {
 
 const timer = new CountdownTimer({
   selector: '#timer-1',
-  targetDate: new Date('Jan 01, 2021'),
+  targetDate: new Date('Jan 01, 2022'),
 });
-
-timer.start();
 
 function updateTimerView({ days, hours, mins, secs }) {
   refs.days.textContent = days;
